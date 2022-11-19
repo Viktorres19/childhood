@@ -77,7 +77,7 @@
                         </div>
                     </div>
                     <div class="col-md-10 offset-md-1 offset-lg-0 col-lg-6 col-xl-5 offset-xl-1">
-                        <h1 class="title underlined">Про компанию</h1>
+                        <h1 class="title underlined"><? bloginfo('name');</h1>
                         <div class="about__text">
                             Наша компания уже больше десяти лет дарит позитивные эмоции детям и их родителям. Мы воплощаем все детские мечты и помогаем родителям дарить счастливое детство!
                             <br> <br>
@@ -502,7 +502,28 @@
                 </div>
             </div>
         </div>
+<?php
+    function print_hello_args($text, $name) {
+        echo 'Hello world' . $text . ' ' . $name;
+    };
+    add_action('my_hook1', 'print_hello_args', 10, 2);
+?>
 
 <?php
+    do_action( 'my_hook1', 'dear customer', 'Ivan' );
+?>
+<?php
     get_footer();
+?>
+<?php
+    do_action( 'my_hook' );
+?>
+<?php
+    function my_filter_function($str) {
+        return 'Hello ' . $str;
+    }
+
+    add_filter('my_filter', 'my_filter_function' );
+
+    echo apply_filters( 'my_filter', 'World' );
 ?>
